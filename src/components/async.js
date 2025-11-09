@@ -22,12 +22,3 @@ export async function getCategories() {
   const categories = [...new Set(categorias)];
   return categories;
 }
-
-export async function getProductByCategory(category) {
-  const response = await getProducts();
-  const products = await response.json();
-  const productsByCategory = products.filter(
-    (prod) => prod.category === category
-  );
-  return productsByCategory;
-}

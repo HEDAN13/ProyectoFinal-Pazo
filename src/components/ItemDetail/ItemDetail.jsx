@@ -13,7 +13,7 @@ export default function ItemDetail({ product }) {
   return (
     <section className="itemDetail">
       <img
-        src={product.images[0]}
+        src={product.thumbnail}
         alt={product.title}
         className="itemDetail-image"
       />

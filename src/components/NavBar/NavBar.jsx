@@ -7,8 +7,9 @@ function Navbar() {
     <header>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Landing
+          <a className="navbar-brand text-center" href="#">
+            DE TODO
+            <br />Y ALGO MÁS
           </a>
           <button
             className="navbar-toggler"

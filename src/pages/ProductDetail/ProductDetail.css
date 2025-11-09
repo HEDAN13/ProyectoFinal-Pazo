@@ -12,3 +12,17 @@
   margin: 1rem 2rem 2rem 1rem;
   padding-right: 4rem;
 }
+
+.opciones-compra {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.boton-carrito {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

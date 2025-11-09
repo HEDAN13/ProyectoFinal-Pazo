@@ -2,6 +2,9 @@ import "./ProductDetail.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { getProductById } from "../../components/async";
+import { ShoppingBasket } from "lucide-react";
+import ItemCount from "../../components/ItemCount/ItemCount";
+import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary";
 
 export default function ProductDetail() {
   const navigate = useNavigate();
@@ -71,9 +74,19 @@ export default function ProductDetail() {
               <span className="visually-hidden">Next</span>
             </button>
           </div>
-          <div className="col-6">
+          <div className="col-6 detail">
             <h1 className="detail-title">{product?.title}</h1>
             <p className="detail-description">{product?.description}</p>
+            <div className="opciones-compra">
+              <ItemCount stock={product?.stock} />
+              <span>{product?.price} $ USD</span>
+            </div>
+            <div className="boton-carrito">
+              <ButtonPrimary>
+                <ShoppingBasket />
+                Añadir al carrito
+              </ButtonPrimary>
+            </div>
           </div>
         </div>
       </div>
