@@ -44,7 +44,7 @@ Implementa una herramienta de routing, la cual permitirá navegar a través de l
 1. Clonar el repositorio:
 
    ```bash
-   git clone https://github.com/HEDAN13/NavegaLasRutas-Pazo.git
+   git clone https://github.com/HEDAN13/ProyectoFinal-Pazo.git
    ```
 
 2. Instalar las dependencias:
