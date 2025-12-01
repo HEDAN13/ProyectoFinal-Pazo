@@ -1,0 +1,21 @@
+.cartWidget {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  padding-right: 1.5rem;
+}
+
+.counter {
+  position: absolute;
+  background-color: hsl(from var(--primary-color) h s calc(l + 10));
+  bottom: -10px;
+  right: 18px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-text-color);
+}

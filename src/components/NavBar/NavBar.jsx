@@ -1,11 +1,12 @@
 import CartWidget from "../CartWidget/CartWidget";
 import CategoryListMenu from "../CategoryListMenu/CategoryListMenu";
 import { NavLink } from "react-router";
+import "./NavBar.css";
 
 function Navbar() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <a className="navbar-brand text-center" href="#">
             DE TODO

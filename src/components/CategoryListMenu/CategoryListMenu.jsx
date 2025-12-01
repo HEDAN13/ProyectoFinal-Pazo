@@ -20,8 +20,6 @@ export default function CategoryListMenu() {
   useEffect(() => {
     if (categoriaSeleccionada && categoriaSeleccionada !== "Categorias") {
       navigate(`/category/${categoriaSeleccionada}`);
-    } else if (categoriaSeleccionada === "Categorias") {
-      navigate("/");
     } else {
       setCategoriaSeleccionada("Categorias");
     }

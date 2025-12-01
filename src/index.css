@@ -7,3 +7,13 @@
   vertical-align: baseline;
   box-sizing: border-box;
 }
+
+:root {
+  --primary-color: #9bbdf6;
+  --primary-text-color: #333;
+}
+
+.dark-theme {
+  --primary-color: #1e2430;
+  --primary-text-color: #ddd;
+}
