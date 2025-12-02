@@ -20,3 +20,8 @@
 .itemDetail-description {
   text-align: center;
 }
+
+.itemDetail-buttons {
+  display: flex;
+  gap: 10px;
+}

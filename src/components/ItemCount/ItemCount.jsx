@@ -1,9 +1,6 @@
-import useCount from "../../hooks/useCount";
 import "./ItemCount.css";
 
-export default function ItemCount({ stock }) {
-  const { count, remove, add } = useCount({ initial: 1, stock });
-
+export default function ItemCount({ count, remove, add }) {
   return (
     <div className="itemCount">
       <button onClick={remove} className="itemCount-button">

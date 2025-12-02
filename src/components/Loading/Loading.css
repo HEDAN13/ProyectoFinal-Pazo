@@ -1,0 +1,11 @@
+.loading {
+  width: 100dvw;
+  height: 100dvh;
+  background-color: hsl(from var(--primary-color) h s calc(l + 15));
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

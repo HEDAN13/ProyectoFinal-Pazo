@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../async.js";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useNavigate, useParams } from "react-router";
+import Loading from "../Loading/Loading.jsx";
 
 export default function ItemListContainer() {
   const navigate = useNavigate();
   const { categoria } = useParams();
   const [products, setProducts] = useState([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +30,16 @@ export default function ItemListContainer() {
     };
     fetchData();
   }, [categoria]);
+
+  useEffect(() => {
+    if (products.length !== 0) {
+      setTimeout(() => {
+        setIsLoadingProducts(false);
+      }, 800);
+    }
+  }, [products, categoria]);
+
+  if (isLoadingProducts) return <Loading loading={isLoadingProducts} />;
 
   return (
     <div className="itemList-container">

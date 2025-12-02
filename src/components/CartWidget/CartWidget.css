@@ -1,16 +1,19 @@
 .cartWidget {
-  background-color: transparent;
+  background-color: hsl(from var(--primary-color) h s calc(l - 6));
   cursor: pointer;
   border: none;
+  border-radius: 50%;
+  box-shadow: 1px 1px 2px hsl(from var(--primary-color) h s calc(l - 50));
   position: relative;
-  padding-right: 1.5rem;
+  padding: 0.5rem;
+  margin-right: 1rem;
 }
 
 .counter {
   position: absolute;
   background-color: hsl(from var(--primary-color) h s calc(l + 10));
-  bottom: -10px;
-  right: 18px;
+  bottom: -7px;
+  right: 3px;
   border-radius: 50%;
   width: 20px;
   height: 20px;
