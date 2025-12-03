@@ -1,0 +1,42 @@
+.cartdetail {
+  color: var(--primary-text-color);
+}
+
+.cartdetail-container {
+  background-color: hsl(from var(--primary-color) h s calc(l + 19));
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid hsl(from var(--primary-text-color) h s calc(l + 60));
+}
+
+.cartdetail-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cartdetail-name {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.cartdetail-price,
+.cartdetail-qty {
+  text-align: center;
+}
+
+.cartdetail-sub {
+  text-align: center;
+  font-weight: 600;
+}
+
+.cartdetail-total {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem 1rem 0;
+  font-size: 1.2rem;
+  gap: 1rem;
+}

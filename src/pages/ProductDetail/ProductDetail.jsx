@@ -8,6 +8,11 @@ import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary";
 import Loading from "../../components/Loading/Loading";
 import useCount from "../../hooks/useCount";
 import { CartContext } from "../../context/cartContext";
+import {
+  confirmarAgregarProducto,
+  mostrarToastError,
+  mostrarToastExito,
+} from "../../components/notificaciones";
 
 export default function ProductDetail() {
   const navigate = useNavigate();
@@ -30,6 +35,7 @@ export default function ProductDetail() {
         }
         setProduct(producto);
       } catch (error) {
+        mostrarToastError("Producto no encontrado");
         navigate("/notfound");
       }
     };
@@ -44,12 +50,16 @@ export default function ProductDetail() {
     }
   }, [product]);
 
-  const handleAddCartProduct = () => {
+  const handleAddCartProduct = async () => {
+    const resultado = await confirmarAgregarProducto(product.title);
+    if (resultado.isDenied || resultado.isDismissed) return;
+
     const newCartProduct = {
       id: product.id,
       quantity: count,
     };
     addCartProduct(newCartProduct);
+    mostrarToastExito(`Se ha agregado ${product.title} al carrito.`);
   };
 
   if (isLoadingProduct) return <Loading loading={isLoadingProduct} />;
@@ -104,6 +114,7 @@ export default function ProductDetail() {
           <div className="col-6 detail">
             <h1 className="detail-title">{product?.title}</h1>
             <p className="detail-description">{product?.description}</p>
+            <p className="detail-stock">Cantidad en stock: {product?.stock}</p>
             <div className="opciones-compra">
               <ItemCount count={count} add={add} remove={remove} />
               <span>{product?.price} $ USD</span>

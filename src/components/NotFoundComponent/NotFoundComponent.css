@@ -1,9 +1,13 @@
 .notfound-container {
+  background-color: hsl(from var(--primary-color) h s calc(l + 10));
+  color: var(--primary-text-color);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  width: 100dvw;
+  height: 100dvh;
 }
 
 .notfound-number {

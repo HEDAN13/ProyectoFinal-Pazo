@@ -1,5 +1,6 @@
 import { db } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
+import { mostrarToastError } from "./notificaciones";
 
 export async function getProducts() {
   try {
@@ -11,7 +12,7 @@ export async function getProducts() {
     }));
     return products;
   } catch (error) {
-    console.log(error);
+    mostrarToastError(error);
     return [];
   }
 }

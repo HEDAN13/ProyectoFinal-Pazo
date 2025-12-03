@@ -1,17 +1,36 @@
 import CartWidget from "../CartWidget/CartWidget";
 import CategoryListMenu from "../CategoryListMenu/CategoryListMenu";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import "./NavBar.css";
+import { getAuth, signOut } from "firebase/auth";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { mostrarToastError } from "../notificaciones";
+import ButtonPrimary from "../ButtonPrimary/ButtonPrimary";
 
 function Navbar() {
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const { deleteUser } = useContext(UserContext);
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        deleteUser();
+        navigate("/login");
+      })
+      .catch((error) => {
+        mostrarToastError(error);
+      });
+  };
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <a className="navbar-brand text-center" href="#">
+          <NavLink className="navbar-brand text-center" to={"/"}>
             DE TODO
             <br />Y ALGO MÁS
-          </a>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -41,6 +60,9 @@ function Navbar() {
             </ul>
           </div>
           <CartWidget />
+          <ButtonPrimary className="nav-logout" onClick={handleLogout}>
+            SALIR
+          </ButtonPrimary>
         </div>
       </nav>
     </header>
