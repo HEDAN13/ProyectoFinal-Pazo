@@ -6,14 +6,18 @@ import ButtonPrimary from "../ButtonPrimary/ButtonPrimary";
 import { useContext, useState } from "react";
 import { CartContext } from "../../context/cartContext";
 import useCount from "../../hooks/useCount";
-import { confirmarAgregarProducto, mostrarToastExito } from "../notificaciones";
+import {
+  confirmarAgregarProducto,
+  mostrarToastError,
+  mostrarToastExito,
+} from "../notificaciones";
 
 export default function ItemDetail({ product }) {
   const navigate = useNavigate();
   const navigateProductDetail = () => {
     navigate(`/product-detail/${product.id}`);
   };
-  const { addCartProduct, totalQuantity } = useContext(CartContext);
+  const { addCartProduct, cart } = useContext(CartContext);
   const { count, remove, add } = useCount({ initial: 1, stock: product.stock });
   const [esVisible, setEsVisible] = useState(true);
 
@@ -21,15 +25,24 @@ export default function ItemDetail({ product }) {
     const resultado = await confirmarAgregarProducto(product.title);
     if (resultado.isDenied || resultado.isDismissed) return;
 
+    const productInCart = cart.find((item) => item.id === product.id);
+    const currentQuantity = productInCart?.quantity ?? 0;
+    const totalQuantity = currentQuantity + count;
+
+    if (totalQuantity > product.stock) {
+      mostrarToastError(
+        `No se pudo agregar ${product.title}. La cantidad solicitada supera la disponible`
+      );
+      return;
+    }
+
     const newCartProduct = {
       id: product.id,
       quantity: count,
     };
-    if (totalQuantity + count <= product.stock) {
-      addCartProduct(newCartProduct);
-      setEsVisible(false);
-      mostrarToastExito(`Se ha agregado ${product.title} al carrito.`);
-    }
+    addCartProduct(newCartProduct);
+    setEsVisible(false);
+    mostrarToastExito(`Se ha agregado ${product.title} al carrito.`);
   };
 
   return (

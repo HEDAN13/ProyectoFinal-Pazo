@@ -2,9 +2,15 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { CartContext } from "../../context/cartContext";
 import { getProducts } from "../../components/async";
 import "./CartDetail.css";
+import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary";
+import { Trash2 } from "lucide-react";
+import {
+  confirmarEliminarProducto,
+  mostrarToastExito,
+} from "../../components/notificaciones";
 
 export default function CartDetail() {
-  const { cart } = useContext(CartContext);
+  const { cart, deleteCartProduct } = useContext(CartContext);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -17,6 +23,14 @@ export default function CartDetail() {
       }
     })();
   }, []);
+
+  const handleRemoveItem = async (item) => {
+    const resultado = await confirmarEliminarProducto(item.title);
+    if (resultado.isDenied || resultado.isDismissed) return;
+
+    deleteCartProduct(item.id);
+    mostrarToastExito(`Se quitó ${item.title} del carrito`);
+  };
 
   const total = useMemo(() => {
     return cart.reduce((acc, cartProduct) => {
@@ -47,6 +61,12 @@ export default function CartDetail() {
               Subtotal:{" "}
               {(dataProduct?.price * cartProduct?.quantity).toFixed(2)} $USD
             </span>
+            <ButtonPrimary
+              onClick={() => handleRemoveItem(dataProduct)}
+              className={"cartdetail-delete"}
+            >
+              <Trash2 />
+            </ButtonPrimary>
           </div>
         );
       })}

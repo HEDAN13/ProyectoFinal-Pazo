@@ -10,6 +10,18 @@ export function confirmarAgregarProducto(nombreProducto) {
   });
 }
 
+export function confirmarEliminarProducto(nombreProducto) {
+  return Swal.fire({
+    title: "¿Quitar del carrito?",
+    text: `"¿Deseas remover "${nombreProducto}" del carrito?`,
+    icon: "question",
+    showDenyButton: true,
+    denyButtonText: "Cancelar",
+    confirmButtonColor: "var(--primary-color)",
+    denyButtonColor: "hsl(from var(--primary-color) h 10% l)",
+  });
+}
+
 export function mostrarToastExito(mensaje) {
   Swal.fire({
     toast: true,

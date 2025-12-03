@@ -23,7 +23,7 @@ export default function ProductDetail() {
     initial: 1,
     stock: product?.stock,
   });
-  const { addCartProduct } = useContext(CartContext);
+  const { addCartProduct, cart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +53,17 @@ export default function ProductDetail() {
   const handleAddCartProduct = async () => {
     const resultado = await confirmarAgregarProducto(product.title);
     if (resultado.isDenied || resultado.isDismissed) return;
+
+    const productInCart = cart.find((item) => item.id === product.id);
+    const currentQuantity = productInCart?.quantity ?? 0;
+    const totalQuantity = currentQuantity + count;
+
+    if (totalQuantity > product.stock) {
+      mostrarToastError(
+        `No se pudo agregar ${product.title}. La cantidad solicitada supera la disponible`
+      );
+      return;
+    }
 
     const newCartProduct = {
       id: product.id,
