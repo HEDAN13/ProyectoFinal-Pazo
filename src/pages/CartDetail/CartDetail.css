@@ -17,6 +17,14 @@
   margin-bottom: 2rem;
 }
 
+.cartdetail-empty {
+  text-align: center;
+}
+
+.cartdetail-empty p {
+  font-size: 2rem;
+}
+
 .cartdetail-name {
   margin: 0;
   font-size: 1.2rem;
@@ -47,4 +55,10 @@
   border-radius: 50%;
   padding: 0.5rem;
   width: 50px;
+}
+
+.cartdetail-checkout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

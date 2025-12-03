@@ -22,6 +22,18 @@ export function confirmarEliminarProducto(nombreProducto) {
   });
 }
 
+export function confirmarCompra(email) {
+  return Swal.fire({
+    title: "¿Finalizar compra?",
+    text: `${email.split("@")[0]}: ¿Deseas finalizar la compra?`,
+    icon: "question",
+    showDenyButton: true,
+    denyButtonText: "Cancelar",
+    confirmButtonColor: "var(--primary-color)",
+    denyButtonColor: "hsl(from var(--primary-color) h 10% l)",
+  });
+}
+
 export function mostrarToastExito(mensaje) {
   Swal.fire({
     toast: true,

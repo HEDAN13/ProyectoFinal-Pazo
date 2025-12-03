@@ -1,5 +1,5 @@
 import { db } from "../firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import { mostrarToastError } from "./notificaciones";
 
 export async function getProducts() {
@@ -28,4 +28,19 @@ export async function getCategories() {
   const categorias = response.map((item) => item.category);
   const categories = [...new Set(categorias)];
   return categories;
+}
+
+export async function guardarCarrito(email, cartDetails, total) {
+  try {
+    const cartCollection = collection(db, "carts");
+    const docRef = await addDoc(cartCollection, {
+      email: email,
+      items: cartDetails,
+      total: parseFloat(total),
+      createdAt: new Date(),
+    });
+    return docRef.id;
+  } catch (error) {
+    mostrarToastError("Error al guardar el carrito", error);
+  }
 }

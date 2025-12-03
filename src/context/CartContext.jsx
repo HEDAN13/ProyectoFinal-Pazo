@@ -33,9 +33,19 @@ export default function CartProvider({ children }) {
     setCart(cart.filter((product) => product.id !== id));
   };
 
+  function deleteAllCartProducts() {
+    setCart([]);
+  }
+
   return (
     <CartContext.Provider
-      value={{ cart, totalQuantity, addCartProduct, deleteCartProduct }}
+      value={{
+        cart,
+        totalQuantity,
+        addCartProduct,
+        deleteCartProduct,
+        deleteAllCartProducts,
+      }}
     >
       {children}
     </CartContext.Provider>
