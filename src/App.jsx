@@ -7,9 +7,9 @@ import CartDetail from "./pages/CartDetail/CartDetail";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
-import CartProvider from "./context/cartContext";
+import CartProvider from "./context/CartContext";
 import UserProvider from "./context/UserContext";
-import Login from "./pages/login/login";
+import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
 function App() {

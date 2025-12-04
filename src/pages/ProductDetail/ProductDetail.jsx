@@ -7,7 +7,7 @@ import ItemCount from "../../components/ItemCount/ItemCount";
 import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary";
 import Loading from "../../components/Loading/Loading";
 import useCount from "../../hooks/useCount";
-import { CartContext } from "../../context/cartContext";
+import { CartContext } from "../../context/CartContext";
 import {
   confirmarAgregarProducto,
   mostrarToastError,

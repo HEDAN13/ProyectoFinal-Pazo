@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { CartContext } from "../../context/cartContext";
+import { CartContext } from "../../context/CartContext";
 import { getProducts, guardarCarrito } from "../../components/async";
 import "./CartDetail.css";
 import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary";

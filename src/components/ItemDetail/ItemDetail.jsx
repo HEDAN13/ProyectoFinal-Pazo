@@ -4,7 +4,7 @@ import { ShoppingBasket } from "lucide-react";
 import ItemCount from "../ItemCount/ItemCount";
 import ButtonPrimary from "../ButtonPrimary/ButtonPrimary";
 import { useContext, useState } from "react";
-import { CartContext } from "../../context/cartContext";
+import { CartContext } from "../../context/CartContext";
 import useCount from "../../hooks/useCount";
 import {
   confirmarAgregarProducto,

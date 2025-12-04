@@ -9,7 +9,7 @@ import { mostrarToastError } from "../notificaciones";
 import ButtonPrimary from "../ButtonPrimary/ButtonPrimary";
 import ButtonTheme from "../ButtonTheme/ButtonTheme";
 import { ThemeContext } from "../../context/ThemeContext";
-import { CartContext } from "../../context/cartContext";
+import { CartContext } from "../../context/CartContext";
 
 function Navbar() {
   const auth = getAuth();
