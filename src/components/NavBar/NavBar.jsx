@@ -58,8 +58,8 @@ function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to={"/contactos"}>
-                  Contacto
+                <NavLink className="nav-link" to={"/mis-compras"}>
+                  Mis compras
                 </NavLink>
               </li>
               <li className="nav-item">

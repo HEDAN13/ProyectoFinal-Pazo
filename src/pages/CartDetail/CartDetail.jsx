@@ -82,6 +82,7 @@ export default function CartDetail() {
         );
         return {
           productId: cartProduct.id,
+          thumbnail: dataProduct.thumbnail,
           title: dataProduct?.title,
           price: dataProduct?.price,
           quantity: cartProduct.quantity,

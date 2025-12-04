@@ -5,13 +5,21 @@
 }
 
 .itemCount-button {
+  background-color: hsl(
+    from var(--primary-color) calc(h + 340) s calc(l + 5) / 0.8
+  );
+  color: var(--primary-text-color);
   text-align: center;
   padding: 10px;
   width: 30px;
   border-radius: 5px;
+  font-weight: bolder;
+  box-shadow: 1px 1px 2px grey;
 }
 
 .itemCount-value {
+  background-color: hsl(from var(--primary-color) h s calc(l + 15));
+  color: var(--primary-text-color);
   text-align: center;
   padding: 9px;
   width: 40px;

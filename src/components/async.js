@@ -1,5 +1,12 @@
 import { db } from "../firebaseConfig";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  query,
+  orderBy,
+  where,
+} from "firebase/firestore";
 import { mostrarToastError } from "./notificaciones";
 
 export async function getProducts() {
@@ -42,5 +49,46 @@ export async function guardarCarrito(email, cartDetails, total) {
     return docRef.id;
   } catch (error) {
     mostrarToastError("Error al guardar el carrito", error);
+  }
+}
+
+export async function getCartsByEmail(email) {
+  try {
+    if (!email) return [];
+    const cartsColl = collection(db, "carts");
+    const q = query(
+      cartsColl,
+      where("email", "==", email),
+      orderBy("createdAt", "desc")
+    );
+    const snapshot = await getDocs(q);
+
+    const carts = snapshot.docs.map((doc) => {
+      const data = doc.data();
+      const items = data.items || [];
+      const totalUnits = items.reduce(
+        (acc, item) => acc + (Number(item.quantity) || 0),
+        0
+      );
+      const createdAt =
+        data.createdAt && typeof data.createdAt.toDate === "function"
+          ? data.createdAt.toDate()
+          : new Date(data.createdAt || Date.now());
+
+      return {
+        id: doc.id,
+        email: data.email,
+        items,
+        total: Number(data.total).toFixed(2) || 0,
+        totalUnits,
+        createdAt,
+      };
+    });
+    return carts;
+  } catch (error) {
+    mostrarToastError("Error al obtener los carritos", error);
+    console.log(error);
+
+    return [];
   }
 }

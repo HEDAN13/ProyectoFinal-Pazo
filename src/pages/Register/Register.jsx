@@ -3,6 +3,10 @@ import "./Register.css";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { UserContext } from "../../context/UserContext";
+import {
+  mostrarToastError,
+  mostrarToastExito,
+} from "../../components/notificaciones";
 
 export default function Register() {
   const auth = getAuth();

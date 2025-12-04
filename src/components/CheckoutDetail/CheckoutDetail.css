@@ -1,0 +1,30 @@
+.accordion-item {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.accordion-button {
+  background-color: hsl(from var(--primary-color) h s calc(l + 10));
+  color: var(--primary-text-color);
+  border-bottom: 1px solid hsl(from var(--primary-text-color) h s calc(l + 60));
+}
+
+.accordion-titles {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  padding: 0.5rem;
+}
+
+.accordion-body {
+  background-color: hsl(from var(--primary-color) h s calc(l + 18));
+  color: var(--primary-text-color);
+}
+
+.list-group-item {
+  background-color: hsl(from var(--primary-color) h s calc(l + 19));
+  color: var(--primary-text-color);
+}

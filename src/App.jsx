@@ -5,7 +5,7 @@ import EmptyLayout from "./layouts/EmptyLayout/EmptyLayout";
 import Products from "./pages/Products";
 import CartDetail from "./pages/CartDetail/CartDetail";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
-import Contact from "./pages/Contact";
+import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
 import CartProvider from "./context/cartContext";
 import UserProvider from "./context/UserContext";
@@ -27,7 +27,7 @@ function App() {
                   path="/product-detail/:productId"
                   element={<ProductDetail />}
                 />
-                <Route path="/contactos" element={<Contact />} />
+                <Route path="/mis-compras" element={<Checkout />} />
               </Route>
               <Route element={<EmptyLayout />}>
                 <Route path="/login" element={<Login />} />

@@ -1,5 +1,5 @@
 .buttonPrimary {
-  background-color: hsl(from var(--primary-color) calc(h + 315) s calc(l + 5));
+  background-color: hsl(from var(--primary-color) calc(h + 330) s calc(l + 5));
   color: var(--primary-text-color);
   width: 150px;
   display: flex;
@@ -7,6 +7,7 @@
   justify-content: center;
   padding: 10px;
   border-radius: 5px;
+  box-shadow: 1px 1px 2px grey;
 }
 
 .buttonPrimary:disabled {
