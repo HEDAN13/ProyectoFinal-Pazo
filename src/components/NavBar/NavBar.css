@@ -3,8 +3,26 @@
   color: var(--primary-text-color);
 }
 
+.navbar-brand {
+  color: var(--primary-text-color);
+}
+
+.nav-link {
+  color: hsl(from var(--primary-text-color) h s l / 0.5);
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+  color: var(--primary-text-color);
+}
+
+.navbar-toggler {
+  color: aliceblue;
+}
+
 .nav-logout {
   background-color: hsl(from var(--primary-color) h s calc(l + 10));
+  color: var(--primary-text-color);
   padding: 0.25rem;
   border-radius: 5px;
   font-weight: 500;

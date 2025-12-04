@@ -76,7 +76,7 @@ export default function ProductDetail() {
   if (isLoadingProduct) return <Loading loading={isLoadingProduct} />;
 
   return (
-    <div>
+    <div className="productdetail-container">
       <div className="slider-imagenes container">
         <div className="row">
           <div

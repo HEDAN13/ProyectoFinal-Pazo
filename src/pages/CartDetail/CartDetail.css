@@ -1,4 +1,5 @@
 .cartdetail {
+  background-color: hsl(from var(--primary-color) h s calc(l + 18));
   color: var(--primary-text-color);
 }
 

@@ -7,21 +7,28 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { mostrarToastError } from "../notificaciones";
 import ButtonPrimary from "../ButtonPrimary/ButtonPrimary";
+import ButtonTheme from "../ButtonTheme/ButtonTheme";
+import { ThemeContext } from "../../context/ThemeContext";
+import { CartContext } from "../../context/cartContext";
 
 function Navbar() {
   const auth = getAuth();
   const navigate = useNavigate();
   const { deleteUser } = useContext(UserContext);
+  const { deleteAllCartProducts } = useContext(CartContext);
+
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
         deleteUser();
+        deleteAllCartProducts();
         navigate("/login");
       })
       .catch((error) => {
         mostrarToastError(error);
       });
   };
+  const { dark } = useContext(ThemeContext);
 
   return (
     <header>
@@ -39,13 +46,14 @@ function Navbar() {
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            data-bs-theme={dark ? "dark" : "light"}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <NavLink className="nav-link active" to={"/"}>
+                <NavLink className="nav-link" to={"/"}>
                   Home
                 </NavLink>
               </li>
@@ -59,6 +67,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
+          <ButtonTheme />
           <CartWidget />
           <ButtonPrimary className="nav-logout" onClick={handleLogout}>
             SALIR

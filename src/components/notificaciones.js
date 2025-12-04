@@ -7,6 +7,8 @@ export function confirmarAgregarProducto(nombreProducto) {
     denyButtonText: "Cancelar",
     confirmButtonColor: "var(--primary-color)",
     denyButtonColor: "hsl(from var(--primary-color) h 10% l)",
+    background: "hsl(from var(--primary-color) h s calc(l + 18))",
+    color: "hsl(from var(--primary-text-color) h s l /0.8)",
   });
 }
 
@@ -19,18 +21,22 @@ export function confirmarEliminarProducto(nombreProducto) {
     denyButtonText: "Cancelar",
     confirmButtonColor: "var(--primary-color)",
     denyButtonColor: "hsl(from var(--primary-color) h 10% l)",
+    background: "hsl(from var(--primary-color) h s calc(l + 18))",
+    color: "hsl(from var(--primary-text-color) h s l /0.8)",
   });
 }
 
 export function confirmarCompra(email) {
   return Swal.fire({
     title: "¿Finalizar compra?",
-    text: `${email.split("@")[0]}: ¿Deseas finalizar la compra?`,
+    text: `${email.split("@")[0]}: Has clic para confirmar tu compra.`,
     icon: "question",
     showDenyButton: true,
     denyButtonText: "Cancelar",
     confirmButtonColor: "var(--primary-color)",
     denyButtonColor: "hsl(from var(--primary-color) h 10% l)",
+    background: "hsl(from var(--primary-color) h s calc(l + 18))",
+    color: "hsl(from var(--primary-text-color) h s l /0.8)",
   });
 }
 
@@ -43,6 +49,8 @@ export function mostrarToastExito(mensaje) {
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
+    background: "hsl(from var(--primary-color) h s calc(l + 18))",
+    color: "hsl(from var(--primary-text-color) h s l /0.8)",
   });
 }
 
@@ -55,5 +63,7 @@ export function mostrarToastError(mensaje) {
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
+    background: "hsl(from var(--primary-color) h s calc(l + 18))",
+    color: "hsl(from var(--primary-text-color) h s l /0.8)",
   });
 }

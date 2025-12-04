@@ -133,7 +133,7 @@ export default function CartDetail() {
                   onClick={() => handleRemoveItem(dataProduct)}
                   className={"cartdetail-delete"}
                 >
-                  <Trash2 />
+                  <Trash2 color="var(--primary-text-color)" />
                 </ButtonPrimary>
               </div>
             );
