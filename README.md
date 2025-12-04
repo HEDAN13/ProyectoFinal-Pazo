@@ -1,63 +1,166 @@
-# React + Vite
+# ProyectoFinal+Pazo — Documentación del Proyecto
 
-## NavegaLasRutas+Pazo
+## Resumen General
 
-Este proyecto corresponde a la segunda entrega del curso de React comisión 81720 de Coder House.
+**ProyectoFinal+Pazo** es una aplicación de e-commerce desarrollada con **React + Vite** que permite a los usuarios:
 
-### Consignas
+- Navegar un catálogo de productos filtrable por categorías
+- Ver detalles de cada producto
+- Agregar productos al carrito
+- Finalizar compras y visualizar historial de pedidos
+- Cambiar entre modo claro y oscuro
 
-Implementa una herramienta de routing, la cual permitirá navegar a través de las diferentes vistas para tu tienda: catálogo principal de productos, catálogo de productos filtrados por categorías, y vista en detalle de un producto. Crea la funcionalidad necesaria para que los usuarios puedan:
+La aplicación utiliza **Firebase** para autenticación, almacenamiento de productos y pedidos, y **Bootstrap** para estilos responsivos.
 
-- [x] Seleccionar desde el menú las distintas categorías disponibles.
-- [x] Visualizar el listado, filtrando según esa elección.
-- [x] Seleccionar un producto del listado y acceder a una vista en detalle del mismo, donde además contarán con una interfaz que posteriormente les permita agregar unidades al carrito.
+---
 
-### Objetivos
+## Estructura del Proyecto
 
-- [x] Implementar la funcionalidad de navegación entre las diferentes vistas utilizando enlaces y rutas.
-- [x] Desarrollar la navegabilidad básica de la aplicación, permitiendo navegar desde el catálogo al detalle de cada item.
+### `/src`
 
-### Requisitos
+Carpeta raíz que contiene toda la lógica y componentes de la aplicación.
 
-- Implementación de React Router y creación de las distintas rutas necesarias para mostrar las vistas de nuestra app.
+#### **Archivos principales**
 
-- División entre componentes contenedores encargados de manejar el estado y los efectos (ItemListContainer, ItemDetailContainer) y componentes de presentación, encargados del apartado visual (estructura de elementos, estilos, classNames, etc.)
+- **`main.jsx`** — Punto de entrada. Configura React, proveedores (ThemeProvider) y monta la app.
+- **`App.jsx`** — Componente raíz. Define rutas principales y layouts.
+- **`firebaseConfig.js`** — Configuración e inicialización de Firebase.
+- **`index.css`** — Estilos globales, variables CSS para tema (claro/oscuro).
 
-- Los componentes contenedores harán un llamado asíncrono a "Promises" que resuelvan luego de un breve retardo los datos solicitados (listado de productos, un producto)
+---
 
-- Uso del método Array.map() y la prop "key" para listar todos los productos en el catálogo.
+### `/components` — Componentes Reutilizables
 
-- Uso del hook useParams() de react router para leer el segmento actual de la URL y mostrar el contenido correspondiente.
+| Componente            | Función                                                              |
+| --------------------- | -------------------------------------------------------------------- |
+| **NavBar**            | Barra de navegación con menú de categorías, carrito y autenticación. |
+| **ButtonPrimary**     | Botón personalizado reutilizable.                                    |
+| **ButtonTheme**       | Toggle para cambiar tema (claro/oscuro).                             |
+| **CartWidget**        | Icono de carrito con contador de productos.                          |
+| **CategoryListMenu**  | Menú desplegable de categorías (dropdown).                           |
+| **ItemCount**         | Selector de cantidad (incrementar/decrementar).                      |
+| **ItemDetail**        | Card de producto con imagen, título, precio y opciones de compra.    |
+| **ItemListContainer** | Contenedor que lista y filtra productos por categoría.               |
+| **CheckoutContainer** | Historial de compras del usuario (accordion con detalles).           |
+| **CheckoutDetail**    | Detalle expandible de cada pedido (acordeón).                        |
+| **Loading**           | Spinner/indicador de carga.                                          |
+| **NotFoundComponent** | Página 404 personalizada.                                            |
 
-### Recomendaciones
+#### **Otros archivos**
 
-- No olvides utilizar los parámetros URL en el array de dependencias de tu useEffect para generar las actualizaciones necesarias al navegar.
+- **`async.js`** — Funciones para obtener datos desde Firebase (productos, carritos, categorías).
+- **`notificaciones.js`** — Funciones para mostrar toasts y alertas (SweetAlert2).
 
-- No crees diferentes rutas para cada categoría: puede parecer la solución más simple cuando tu aplicación sea pequeña, pero hará más difícil incorporar nuevas categorías y modificar la implementación en el futuro, ya que tendrás tu código duplicado en diversos componentes.
+---
 
-- Crear una ruta de tipo “404” (path=”\*”) es una buena práctica y te ayudará a encontrar errores de navegación y enlaces mal formateados.
+### `/context` — Contextos Globales (State Management)
 
-- Puedes incluir el componente contador ItemCount dentro del componente ItemDetail
+| Contexto             | Responsabilidad                                           |
+| -------------------- | --------------------------------------------------------- |
+| **ThemeContext.jsx** | Gestiona modo claro/oscuro. Persiste en localStorage.     |
+| **CartContext.jsx**  | Gestiona carrito de compras (agregar, eliminar, limpiar). |
+| **UserContext.jsx**  | Gestiona usuario autenticado y datos de sesión.           |
 
-## Para ejecutar el proyecto localmente
+---
 
-1. Clonar el repositorio:
+### `/hooks` — Hooks Personalizados
 
-   ```bash
-   git clone https://github.com/HEDAN13/ProyectoFinal-Pazo.git
-   ```
+| Hook             | Función                                                                       |
+| ---------------- | ----------------------------------------------------------------------------- |
+| **useCount.jsx** | Maneja el contador de cantidad (incrementar/decrementar con límite de stock). |
 
-2. Instalar las dependencias:
+---
 
-   ```bash
-   npm install
-   ```
+### `/layouts` — Estructuras de Página
 
-3. Ejecutar localmente:
-   ```bash
-   npm run dev
-   ```
+| Layout          | Uso                                                     |
+| --------------- | ------------------------------------------------------- |
+| **MainLayout**  | Incluye NavBar + contenido (para páginas autenticadas). |
+| **EmptyLayout** | Solo contenido sin navegación (para Login/Register).    |
 
-## Ejemplo de Navegación
+---
 
-![Gif con la navegación](./public/Grabación-de-pantalla-2025-11-08-211030.gif)
+### `/pages` — Páginas (Vistas Principales)
+
+| Página                | Ruta           | Descripción                                                |
+| --------------------- | -------------- | ---------------------------------------------------------- |
+| **Products.jsx**      | `/`            | Catálogo principal de productos.                           |
+| **ProductDetail.jsx** | `/product/:id` | Detalle de un producto con galería e info completa.        |
+| **CartDetail.jsx**    | `/carrito`     | Carrito con listado de items y opción de finalizar compra. |
+| **Checkout.jsx**      | `/checkout`    | Historial de compras del usuario (acordeón).               |
+| **Login.jsx**         | `/login`       | Formulario de inicio de sesión.                            |
+| **Register.jsx**      | `/register`    | Formulario de registro.                                    |
+| **NotFound.jsx**      | `/*`           | Página 404.                                                |
+
+---
+
+## Funcionalidades Principales
+
+### 1. Autenticación
+
+- Registro e inicio de sesión con **Firebase Auth**.
+- Persistencia de usuario en **localStorage** y **UserContext**.
+
+### 2. Catálogo de Productos
+
+- Obtiene productos desde **Firestore** (colección `items`).
+- Filtrado por categoría vía **useParams**.
+- Card con imagen (thumbnail), título, descripción y precio.
+
+### 3. Carrito de Compras
+
+- Agregar/eliminar productos.
+- Validación de stock (no permite exceder disponibilidad).
+- Toast de confirmación antes de agregar.
+- Persiste en **CartContext** (sesión actual).
+
+### 4. Checkout
+
+- Solicita confirmación del usuario antes de finalizar compra.
+- Guarda pedido en Firestore (colección `cart`).
+- Historial de compras con acordeón Bootstrap.
+- Muestra fecha, cantidad, precio total y detalles de items.
+
+### 5. Tema (Claro/Oscuro)
+
+- Toggle en **NavBar** via **ButtonTheme**.
+- Usa variables CSS (--primary-color, --primary-text-color).
+- Persiste preferencia en **localStorage**.
+- Aplica clase `.dark-theme` en `<html>`.
+
+---
+
+## Tecnologías Usadas
+
+| Tecnología          | Propósito                                             |
+| ------------------- | ----------------------------------------------------- |
+| **React 18**        | Framework principal.                                  |
+| **Vite**            | Bundler/dev server.                                   |
+| **React Router v6** | Navegación entre rutas.                               |
+| **Firebase**        | Autenticación, Firestore (base datos), hosting.       |
+| **Bootstrap 5**     | Estilos, grid, componentes (accordion, navbar, etc.). |
+| **SweetAlert2**     | Modales y alertas personalizadas.                     |
+| **Lucide React**    | Iconos (Sun, Moon, Trash2, ShoppingBasket, etc.).     |
+| **CSS Variables**   | Gestión dinámica de temas.                            |
+
+---
+
+## Instalación y Ejecución
+
+```bash
+# 1. Clonar repositorio
+git clone https://github.com/HEDAN13/ProyectoFinal-Pazo.git
+
+# 2. Instalar dependencias
+npm install
+
+# 3. Crear archivo .env
+# Añadir configuración de Firebase
+
+# 4. Ejecutar en desarrollo
+npm run dev
+```
+
+**Última actualización:** Diciembre 2025
+**Autor:** HEDAN13 - Héctor Daniel Pazo
+**Comisión:** 81720 — Coder House
